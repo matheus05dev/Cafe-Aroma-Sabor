@@ -11,19 +11,19 @@ public class TestePagesController {
     public String Teste(){
         return "home";
     }
-    @GetMapping("/login")
+    @GetMapping("")
     public String Teste1(){
         return "login";
     }
 
-    @GetMapping("/dashboard")
+    @GetMapping("/estoque")
     public String Teste2(){
-        return "dashboard";
+        return "estoque";
     }
 
     @GetMapping("/produtos")
     public String Teste3(){
-        return "produtos";
+        return "produtos-lista";
     }
 
     @GetMapping("/movimentacao")
@@ -33,7 +33,7 @@ public class TestePagesController {
 
     @GetMapping("/usuarios")
     public String Teste5(){
-        return "usuarios";
+        return "usuarios-lista";
     }
 
     @GetMapping("/historico")
@@ -44,6 +44,26 @@ public class TestePagesController {
     @GetMapping("/alertas")
     public String Teste7(){
         return "alertas";
+    }
+
+    @GetMapping("/produtos/criar")
+    public String Teste8(){
+        return "criar-produtos";
+    }
+
+    @GetMapping("/usuarios/criar")
+    public String Teste9(){
+        return "criar-usuario";
+    }
+
+    @GetMapping("/usuarios/editar")
+    public String Teste10(){
+        return "editar-usuario";
+    }
+
+    @GetMapping("/produtos/editar")
+    public String Teste11(){
+        return "editar-produtos";
     }
 
 }

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="fragments/heads :: heads"></head>
+<body>
+    <header th:replace="fragments/header :: header"></header>
+    <main class="container main-content">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Lista de Produtos</h1>
+            <a href="/produtos/criar" class="btn btn-success">Novo Produto</a>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Marca/Fornecedor</th>
+                            <th>Lote</th>
+                            <th>Data Fabricação</th>
+                            <th>Validade</th>
+                            <th>Código Interno</th>
+                            <th>Tipo</th>
+                            <th>Estoque</th>
+                            <th>Avisos</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Café Gourmet</td>
+                            <td>Café do Brasil</td>
+                            <td>12345</td>
+                            <td>01/09/2025</td>
+                            <td>01/09/2026</td>
+                            <td>CAF-001</td>
+                            <td>Grãos</td>
+                            <td>5</td>
+                            <td><span class="badge bg-warning text-dark">Estoque Baixo</span></td>
+                            <td>
+                                <a href="produtos/editar" class="btn btn-primary btn-sm">Editar</a>
+                                <button class="btn btn-danger btn-sm" disabled>Excluir</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Bolo de Cenoura</td>
+                            <td>Padaria Central</td>
+                            <td>67890</td>
+                            <td>10/10/2025</td>
+                            <td>20/10/2025</td>
+                            <td>BOL-002</td>
+                            <td>Doces</td>
+                            <td>20</td>
+                            <td><span class="badge bg-danger">Validade Próxima</span></td>
+                            <td>
+                                <a href="produtos/editar" class="btn btn-primary btn-sm">Editar</a>
+                                <button class="btn btn-danger btn-sm" disabled>Excluir</button>
+                            </td>
+                        </tr>
+                        <!-- Mais linhas de exemplo -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
+

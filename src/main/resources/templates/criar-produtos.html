@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="fragments/heads :: heads"></head>
+<body>
+    <header th:replace="fragments/header :: header"></header>
+    <main class="container main-content">
+        <h1 class="mb-4">Cadastrar Produto</h1>
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome do Produto</label>
+                        <input type="text" class="form-control" id="nome" placeholder="Digite o nome do produto">
+                    </div>
+                    <div class="mb-3">
+                        <label for="marca" class="form-label">Marca/Fornecedor</label>
+                        <input type="text" class="form-control" id="marca" placeholder="Digite a marca ou fornecedor">
+                    </div>
+                    <div class="mb-3">
+                        <label for="lote" class="form-label">Lote</label>
+                        <input type="text" class="form-control" id="lote" placeholder="Digite o lote">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dataFabricacao" class="form-label">Data de Fabricação</label>
+                        <input type="date" class="form-control" id="dataFabricacao">
+                    </div>
+                    <div class="mb-3">
+                        <label for="validade" class="form-label">Data de Validade</label>
+                        <input type="date" class="form-control" id="validade">
+                    </div>
+                    <div class="mb-3">
+                        <label for="codigoInterno" class="form-label">Código Interno</label>
+                        <input type="text" class="form-control" id="codigoInterno" placeholder="Digite o código interno">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipo" class="form-label">Tipo</label>
+                        <input type="text" class="form-control" id="tipo" placeholder="Ex: Grãos, Café, etc.">
+                    </div>
+                    <div class="mb-3">
+                        <label for="estoque" class="form-label">Quantidade em Estoque</label>
+                        <input type="number" class="form-control" id="estoque" placeholder="Quantidade em estoque">
+                    </div>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                    <a href="/produtos" class="btn btn-secondary ms-2">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

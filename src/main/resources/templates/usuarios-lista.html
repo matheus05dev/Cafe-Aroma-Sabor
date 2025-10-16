@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="fragments/heads :: heads"></head>
+<body>
+    <header th:replace="fragments/header :: header"></header>
+    <main class="container main-content">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Lista de Usuários</h1>
+            <a href="/usuarios/criar" class="btn btn-success">Novo Usuário</a>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>CPF</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>maria.silva</td>
+                            <td>Maria Silva</td>
+                            <td>maria@email.com</td>
+                            <td>123.456.789-00</td>
+                            <td>
+                                <a href="/usuarios/editar" class="btn btn-primary btn-sm">Editar</a>
+                                <button class="btn btn-danger btn-sm" disabled>Excluir</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>joao.souza</td>
+                            <td>João Souza</td>
+                            <td>joao@email.com</td>
+                            <td>987.654.321-00</td>
+                            <td>
+                                <a href="/usuarios/editar" class="btn btn-primary btn-sm">Editar</a>
+                                <button class="btn btn-danger btn-sm" disabled>Excluir</button>
+                            </td>
+                        </tr>
+                        <!-- Mais linhas de exemplo -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
+

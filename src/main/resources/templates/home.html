@@ -2,9 +2,176 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:replace="~{fragments/heads :: head}"></th:block>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e3e7ed 100%);
+        }
+        .main-content {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .home-title {
+            color: #2c3e50;
+            text-shadow: 0 2px 8px #e3e7ed;
+        }
+        .section-title {
+            color: #2980b9;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .card-home {
+            box-shadow: 0 4px 16px rgba(44,62,80,0.08);
+            border: none;
+            transition: transform 0.2s;
+            min-height: 260px;
+        }
+        .card-home:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 8px 24px rgba(44,62,80,0.12);
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            color: #2980b9;
+            margin-bottom: 0.5rem;
+        }
+        .btn-home {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .last-data-section {
+            margin-top: 3rem;
+        }
+        .last-data-card {
+            box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+            border: none;
+            margin-bottom: 1.5rem;
+        }
+        .last-data-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #34495e;
+        }
+        .last-data-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+        .last-data-list li {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid #e3e7ed;
+            font-size: 0.98rem;
+        }
+        .last-data-list li:last-child {
+            border-bottom: none;
+        }
+        @media (max-width: 768px) {
+            .row.g-4 > div {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-light">
     <th:block th:replace="~{fragments/header :: header}"></th:block>
-    <!-- Conteúdo principal pode ser adicionado abaixo -->
+    <main class="container main-content py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold home-title">Sistema de Monitoramento de Estoque</h1>
+            <p class="lead">Bem-vindo ao sistema interno do Café Aroma & Sabor. Gerencie produtos, usuários, controle o estoque, acompanhe históricos de movimentação e receba alertas de validade e estoque baixo.</p>
+        </div>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-3">
+                <section>
+                    <h2 class="section-title text-center"><i class="fa-solid fa-boxes-stacked"></i> Produtos</h2>
+                    <div class="card card-home h-100 text-center p-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestão de Produtos</h5>
+                            <p class="card-text">Cadastre, edite e visualize os produtos do estoque, incluindo marca, lote, validade e tipo.</p>
+                            <a href="/produtos-lista" class="btn btn-primary btn-home">Acessar Produtos</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <section>
+                    <h2 class="section-title text-center"><i class="fa-solid fa-users"></i> Usuários</h2>
+                    <div class="card card-home h-100 text-center p-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestão de Usuários</h5>
+                            <p class="card-text">Gerencie os funcionários que acessam o sistema, controle de permissões e dados cadastrais.</p>
+                            <a href="/usuarios-lista" class="btn btn-primary btn-home">Acessar Usuários</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <section>
+                    <h2 class="section-title text-center"><i class="fa-solid fa-warehouse"></i> Estoque</h2>
+                    <div class="card card-home h-100 text-center p-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Controle de Estoque</h5>
+                            <p class="card-text">Controle entradas, saídas e consulte o histórico de movimentações e transições.</p>
+                            <a href="/movimentacao" class="btn btn-primary btn-home">Acessar Estoque</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <section>
+                    <h2 class="section-title text-center"><i class="fa-solid fa-triangle-exclamation"></i> Alertas</h2>
+                    <div class="card card-home h-100 text-center p-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Alertas do Sistema</h5>
+                            <p class="card-text">Veja avisos de validade próxima e estoque baixo para rápida ação.</p>
+                            <a href="/alertas" class="btn btn-warning btn-home">Ver Alertas</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="last-data-section">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card last-data-card">
+                        <div class="card-body">
+                            <div class="last-data-title mb-2"><i class="fa-solid fa-box"></i> Últimos Produtos Cadastrados</div>
+                            <ul class="last-data-list">
+                                <li>Café Gourmet - Lote 12345 - Validade: 01/09/2026</li>
+                                <li>Bolo de Cenoura - Lote 67890 - Validade: 20/10/2025</li>
+                                <li>Leite Integral - Lote 54321 - Validade: 05/11/2025</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card last-data-card">
+                        <div class="card-body">
+                            <div class="last-data-title mb-2"><i class="fa-solid fa-right-left"></i> Últimas Movimentações de Estoque</div>
+                            <ul class="last-data-list">
+                                <li>Saída: Café Gourmet - 10 unidades - 15/10/2025 - por Maria Silva</li>
+                                <li>Entrada: Leite Integral - 30 unidades - 14/10/2025 - por João Souza</li>
+                                <li>Saída: Bolo de Cenoura - 5 unidades - 13/10/2025 - por Miguel Alves</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card last-data-card">
+                        <div class="card-body">
+                            <div class="last-data-title mb-2"><i class="fa-solid fa-bell"></i> Últimos Alertas</div>
+                            <ul class="last-data-list">
+                                <li>Validade próxima: Bolo de Cenoura - 20/10/2025</li>
+                                <li>Estoque baixo: Café Gourmet - 5 unidades</li>
+                                <li>Validade próxima: Leite Integral - 05/11/2025</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
