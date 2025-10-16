@@ -1,0 +1,217 @@
+<!-- Movimentação de Estoque | Café Aroma & Sabor -->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head th:replace="fragments/heads :: heads"></head>
+    <body>
+        <header th:replace="fragments/header :: header"></header>
+        <main class="container main-content">
+            <h1 class="mb-4">Movimentação de Estoque</h1>
+            <!-- Formulário de Movimentação -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">Registrar Movimentação</div>
+                <div class="card-body">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Produto</label>
+                                <select class="form-select">
+                                    <option>Café Gourmet</option>
+                                    <option>Café Tradicional</option>
+                                    <option>Café Orgânico</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Quantidade</label>
+                                <input type="number" class="form-control" placeholder="Ex: 10">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Tipo de Movimentação</label>
+                                <select class="form-select">
+                                    <option>Entrada</option>
+                                    <option>Saída</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Responsável</label>
+                                <input type="text" class="form-control" placeholder="Ex: João Silva">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Data</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end">
+                                <button type="submit" class="btn btn-success w-100">Registrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Listagem de Movimentações Recentes -->
+            <div class="card">
+                <div class="card-header bg-secondary text-white">Movimentações Recentes</div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Produto</th>
+                                    <th>Tipo</th>
+                                    <th>Quantidade</th>
+                                    <th>Responsável</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>16/10/2025</td>
+                                    <td>Café Gourmet</td>
+                                    <td>Entrada</td>
+                                    <td>50</td>
+                                    <td>João Silva</td>
+                                </tr>
+                                <tr>
+                                    <td>15/10/2025</td>
+                                    <td>Café Tradicional</td>
+                                    <td>Saída</td>
+                                    <td>20</td>
+                                    <td>Maria Souza</td>
+                                </tr>
+                                <tr>
+                                    <td>14/10/2025</td>
+                                    <td>Café Orgânico</td>
+                                    <td>Entrada</td>
+                                    <td>10</td>
+                                    <td>Pedro Lima</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="fragments/footer :: footer"></footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
+<!-- Produtos - Cadastro e Listagem | Café Aroma & Sabor -->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head th:replace="fragments/heads :: heads"></head>
+    <body>
+        <header th:replace="fragments/header :: header"></header>
+        <main class="container main-content">
+            <h1 class="mb-4">Produtos</h1>
+            <!-- Formulário de Cadastro de Produto -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">Cadastrar Produto</div>
+                <div class="card-body">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Nome</label>
+                                <input type="text" class="form-control" placeholder="Ex: Café Gourmet">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Marca/Fornecedor</label>
+                                <input type="text" class="form-control" placeholder="Ex: Fornecedor A">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Lote</label>
+                                <input type="text" class="form-control" placeholder="Ex: 12345">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Código Interno</label>
+                                <input type="text" class="form-control" placeholder="Ex: CAF001">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Data de Fabricação</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Data de Validade</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Tipo</label>
+                                <select class="form-select">
+                                    <option>Grãos</option>
+                                    <option>Pó</option>
+                                    <option>Cápsulas</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end">
+                                <button type="submit" class="btn btn-success w-100">Cadastrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Listagem de Produtos -->
+            <div class="card">
+                <div class="card-header bg-secondary text-white">Lista de Produtos</div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Marca/Fornecedor</th>
+                                    <th>Lote</th>
+                                    <th>Código</th>
+                                    <th>Tipo</th>
+                                    <th>Fabricação</th>
+                                    <th>Validade</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Café Gourmet</td>
+                                    <td>Fornecedor A</td>
+                                    <td>12345</td>
+                                    <td>CAF001</td>
+                                    <td>Grãos</td>
+                                    <td>01/01/2025</td>
+                                    <td>20/12/2025</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary me-1" disabled>Editar</button>
+                                        <button class="btn btn-sm btn-danger" disabled>Excluir</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Café Tradicional</td>
+                                    <td>Fornecedor B</td>
+                                    <td>54321</td>
+                                    <td>CAF002</td>
+                                    <td>Pó</td>
+                                    <td>10/02/2025</td>
+                                    <td>10/11/2025</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary me-1" disabled>Editar</button>
+                                        <button class="btn btn-sm btn-danger" disabled>Excluir</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Café Orgânico</td>
+                                    <td>Fornecedor C</td>
+                                    <td>67890</td>
+                                    <td>CAF003</td>
+                                    <td>Grãos</td>
+                                    <td>05/03/2025</td>
+                                    <td>05/10/2025</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary me-1" disabled>Editar</button>
+                                        <button class="btn btn-sm btn-danger" disabled>Excluir</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="fragments/footer :: footer"></footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
+

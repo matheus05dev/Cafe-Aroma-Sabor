@@ -1,0 +1,178 @@
+<!-- Alertas de Estoque | Café Aroma & Sabor -->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head th:replace="fragments/heads :: heads"></head>
+    <body>
+        <header th:replace="fragments/header :: header"></header>
+        <main class="container main-content">
+            <h1 class="mb-4">Alertas de Estoque</h1>
+            <!-- Alerta de Estoque Mínimo -->
+            <div class="alert alert-warning" role="alert">
+                <strong>Atenção!</strong> Alguns produtos estão com estoque abaixo do mínimo.
+            </div>
+            <div class="card mb-4">
+                <div class="card-header bg-warning text-dark">Estoque Mínimo</div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Marca/Fornecedor</th>
+                                    <th>Quantidade Atual</th>
+                                    <th>Estoque Mínimo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Café Tradicional</td>
+                                    <td>Fornecedor B</td>
+                                    <td>8</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td>Café Orgânico</td>
+                                    <td>Fornecedor C</td>
+                                    <td>5</td>
+                                    <td>10</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Alerta de Validade Próxima -->
+            <div class="alert alert-danger" role="alert">
+                <strong>Urgente!</strong> Produtos com validade próxima.
+            </div>
+            <div class="card">
+                <div class="card-header bg-danger text-white">Validade Próxima</div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Marca/Fornecedor</th>
+                                    <th>Validade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Café Orgânico</td>
+                                    <td>Fornecedor C</td>
+                                    <td>05/10/2025</td>
+                                </tr>
+                                <tr>
+                                    <td>Café Tradicional</td>
+                                    <td>Fornecedor B</td>
+                                    <td>10/11/2025</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="fragments/footer :: footer"></footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
+<!-- Usuários - Cadastro e Listagem | Café Aroma & Sabor -->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head th:replace="fragments/heads :: heads"></head>
+    <body>
+        <header th:replace="fragments/header :: header"></header>
+        <main class="container main-content">
+            <h1 class="mb-4">Usuários</h1>
+            <!-- Formulário de Cadastro de Usuário -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">Cadastrar Usuário</div>
+                <div class="card-body">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="form-control" placeholder="Ex: joaosilva">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Senha</label>
+                                <input type="password" class="form-control" placeholder="Senha">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Nome</label>
+                                <input type="text" class="form-control" placeholder="Ex: João Silva">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">E-mail</label>
+                                <input type="email" class="form-control" placeholder="Ex: joao@email.com">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">CPF</label>
+                                <input type="text" class="form-control" placeholder="Ex: 123.456.789-00">
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end">
+                                <button type="submit" class="btn btn-success w-100">Cadastrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Listagem de Usuários -->
+            <div class="card">
+                <div class="card-header bg-secondary text-white">Lista de Usuários</div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                    <th>CPF</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>joaosilva</td>
+                                    <td>João Silva</td>
+                                    <td>joao@email.com</td>
+                                    <td>123.456.789-00</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary me-1" disabled>Editar</button>
+                                        <button class="btn btn-sm btn-danger" disabled>Excluir</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>mariasouza</td>
+                                    <td>Maria Souza</td>
+                                    <td>maria@email.com</td>
+                                    <td>987.654.321-00</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary me-1" disabled>Editar</button>
+                                        <button class="btn btn-sm btn-danger" disabled>Excluir</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>pedrolima</td>
+                                    <td>Pedro Lima</td>
+                                    <td>pedro@email.com</td>
+                                    <td>111.222.333-44</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary me-1" disabled>Editar</button>
+                                        <button class="btn btn-sm btn-danger" disabled>Excluir</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="fragments/footer :: footer"></footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
+

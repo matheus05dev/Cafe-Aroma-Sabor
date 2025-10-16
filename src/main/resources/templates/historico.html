@@ -1,0 +1,62 @@
+<!-- Histórico de Movimentações | Café Aroma & Sabor -->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head th:replace="fragments/heads :: heads"></head>
+    <body>
+        <header th:replace="fragments/header :: header"></header>
+        <main class="container main-content">
+            <h1 class="mb-4">Histórico de Movimentações</h1>
+            <div class="card">
+                <div class="card-header bg-secondary text-white">Movimentações</div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Produto</th>
+                                    <th>Quantidade</th>
+                                    <th>Tipo</th>
+                                    <th>Responsável</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>16/10/2025</td>
+                                    <td>Café Gourmet</td>
+                                    <td>+50</td>
+                                    <td>Entrada</td>
+                                    <td>João Silva</td>
+                                </tr>
+                                <tr>
+                                    <td>15/10/2025</td>
+                                    <td>Café Tradicional</td>
+                                    <td>-20</td>
+                                    <td>Saída</td>
+                                    <td>Maria Souza</td>
+                                </tr>
+                                <tr>
+                                    <td>14/10/2025</td>
+                                    <td>Café Orgânico</td>
+                                    <td>+10</td>
+                                    <td>Entrada</td>
+                                    <td>Pedro Lima</td>
+                                </tr>
+                                <tr>
+                                    <td>13/10/2025</td>
+                                    <td>Café Gourmet</td>
+                                    <td>-5</td>
+                                    <td>Saída</td>
+                                    <td>João Silva</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="fragments/footer :: footer"></footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
+

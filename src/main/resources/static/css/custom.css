@@ -1,0 +1,37 @@
+/* CSS personalizado para Café Aroma & Sabor */
+body {
+    background-color: #f8f9fa;
+}
+
+.logo {
+    height: 40px;
+}
+
+/* Espaçamento para o conteúdo principal */
+.main-content {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/* Rodapé fixo */
+.footer {
+    background: #343a40;
+    color: #fff;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .footer {
+        font-size: 0.9em;
+    }
+}
+
