@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/heads :: heads"></head>
 <body>
     <header th:replace="fragments/header :: header"></header>
@@ -7,26 +7,26 @@
         <h1 class="mb-4">Cadastrar Usuário</h1>
         <div class="card">
             <div class="card-body">
-                <form>
+                <form th:action="@{/usuarios/novo}" th:object="${usuario}" method="post">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Digite o username">
+                        <input type="text" class="form-control" id="username" th:field="*{username}" placeholder="Digite o username" required>
                     </div>
                     <div class="mb-3">
                         <label for="senha" class="form-label">Senha</label>
-                        <input type="password" class="form-control" id="senha" placeholder="Digite a senha">
+                        <input type="password" class="form-control" id="senha" th:field="*{senha}" placeholder="Digite a senha" required minlength="6">
                     </div>
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nome" placeholder="Digite o nome do usuário">
+                        <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Digite o nome do usuário" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Digite o email">
+                        <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Digite o email" required>
                     </div>
                     <div class="mb-3">
                         <label for="cpf" class="form-label">CPF</label>
-                        <input type="text" class="form-control" id="cpf" placeholder="Digite o CPF">
+                        <input type="text" class="form-control" id="cpf" th:field="*{cpf}" placeholder="Digite o CPF" required pattern="^\d{3}\.\d{3}\.\d{3}-\d{2}$" maxlength="14">
                     </div>
                     <button type="submit" class="btn btn-success">Salvar</button>
                     <a href="/usuarios" class="btn btn-secondary ms-2">Cancelar</a>

@@ -1,50 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/heads :: heads"></head>
 <body>
     <header th:replace="fragments/header :: header"></header>
     <main class="container main-content">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>Lista de Usuários</h1>
-            <a href="/usuarios/criar" class="btn btn-success">Novo Usuário</a>
+        <h1 class="mb-4">Lista de Usuários</h1>
+
+        <div th:if="${message}" class="alert alert-success" role="alert">
+            <p th:text="${message}"></p>
         </div>
+
+        <div class="d-flex justify-content-end mb-3">
+            <a href="/usuarios/novo" class="btn btn-primary">Novo Usuário</a>
+        </div>
+
         <div class="card">
             <div class="card-body">
-                <table class="table table-striped">
+                <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Username</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>CPF</th>
-                            <th>Ações</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">CPF</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>maria.silva</td>
-                            <td>Maria Silva</td>
-                            <td>maria@email.com</td>
-                            <td>123.456.789-00</td>
+                        <tr th:each="usuario : ${usuarios}">
+                            <td th:text="${usuario.id}"></td>
+                            <td th:text="${usuario.username}"></td>
+                            <td th:text="${usuario.nome}"></td>
+                            <td th:text="${usuario.email}"></td>
+                            <td th:text="${usuario.cpf}"></td>
                             <td>
-                                <a href="/usuarios/editar" class="btn btn-primary btn-sm">Editar</a>
-                                <button class="btn btn-danger btn-sm" disabled>Excluir</button>
+                                <a th:href="@{/usuarios/editar/{id}(id=${usuario.id})}" class="btn btn-sm btn-warning">Editar</a>
+                                <a href="#" class="btn btn-sm btn-danger">Excluir</a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>joao.souza</td>
-                            <td>João Souza</td>
-                            <td>joao@email.com</td>
-                            <td>987.654.321-00</td>
-                            <td>
-                                <a href="/usuarios/editar" class="btn btn-primary btn-sm">Editar</a>
-                                <button class="btn btn-danger btn-sm" disabled>Excluir</button>
-                            </td>
+                        <tr th:if="${#lists.isEmpty(usuarios)}">
+                            <td colspan="6" class="text-center">Nenhum usuário encontrado.</td>
                         </tr>
-                        <!-- Mais linhas de exemplo -->
                     </tbody>
                 </table>
             </div>
@@ -53,4 +50,3 @@
     <footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
-
