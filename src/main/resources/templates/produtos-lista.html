@@ -6,7 +6,7 @@
     <main class="container main-content mb-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>Lista de Produtos</h1>
-            <a href="/produtos/criar" class="btn btn-success">Novo Produto</a>
+            <a href="/produtos/novo" class="btn btn-success">Novo Produto</a>
         </div>
         <div class="card">
             <div class="card-body">
@@ -22,29 +22,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Café Gourmet</td>
-                            <td>Café do Brasil</td>
-                            <td>CAF-001</td>
-                            <td>Grãos</td>
+                        <tr th:each="produto : ${produtos}">
+                            <td th:text="${produto.id}"></td>
+                            <td th:text="${produto.nome}"></td>
+                            <td th:text="${produto.marca}"></td>
+                            <td th:text="${produto.codigoInterno}"></td>
+                            <td th:text="${produto.tipo}"></td>
                             <td>
-                                <a href="produtos/editar" class="btn btn-primary btn-sm">Editar</a>
-                                <button class="btn btn-danger btn-sm" disabled>Excluir</button>
+                                <a th:href="@{/produtos/editar/{id}(id=${produto.id})}" class="btn btn-sm btn-warning">Editar</a>
+                                <!-- Formulário para deletar o usuário -->
+                                <form th:action="@{/produtos/apagar/{id}(id=${produto.id})}" method="post" style="display:inline;">
+                                    <input type="hidden" name="_method" value="delete" />
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja apagar este usuário?');">Excluir</button>
+                                </form>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Bolo de Cenoura</td>
-                            <td>Padaria Central</td>
-                            <td>BOL-002</td>
-                            <td>Doces</td>
-                            <td>
-                                <a href="produtos/editar" class="btn btn-primary btn-sm">Editar</a>
-                                <button class="btn btn-danger btn-sm" disabled>Excluir</button>
-                            </td>
+                        <tr th:if="${#lists.isEmpty(produtos)}">
+                            <td colspan="6" class="text-center">Nenhum produto encontrado.</td>
                         </tr>
-                        <!-- Mais linhas de exemplo -->
                     </tbody>
                 </table>
             </div>

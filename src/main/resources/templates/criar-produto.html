@@ -4,28 +4,27 @@
 <body>
     <header th:replace="fragments/header :: header"></header>
     <main class="container main-content mb-5">
-        <h1 class="mb-4">Editar Produto</h1>
+        <h1 class="mb-4">Cadastrar Produto</h1>
         <div class="card">
             <div class="card-body">
-                <form>
+                <form th:action="@{/produtos/novo}" th:object="${produto}" method="post">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome do Produto</label>
-                        <input type="text" class="form-control" id="nome" value="Café Gourmet">
+                        <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Digite o nome do produto">
                     </div>
                     <div class="mb-3">
                         <label for="marca" class="form-label">Marca/Fornecedor</label>
-                        <input type="text" class="form-control" id="marca" value="Café do Brasil">
+                        <input type="text" class="form-control" id="marca" th:field="*{marca}" placeholder="Digite a marca ou fornecedor">
                     </div>
                     <div class="mb-3">
                         <label for="codigoInterno" class="form-label">Código Interno</label>
-                        <input type="text" class="form-control" id="codigoInterno" value="CAF-001">
+                        <input type="text" class="form-control" id="codigoInterno" th:field="*{codigoInterno}" placeholder="Digite o código interno">
                     </div>
                     <div class="mb-3">
                         <label for="tipo" class="form-label">Tipo</label>
-                        <input type="text" class="form-control" id="tipo" value="Grãos">
+                        <input type="text" class="form-control" id="tipo" th:field="*{tipo}" placeholder="Ex: Grãos, Café, etc.">
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
                     <a href="/produtos" class="btn btn-secondary ms-2">Cancelar</a>
                 </form>
             </div>

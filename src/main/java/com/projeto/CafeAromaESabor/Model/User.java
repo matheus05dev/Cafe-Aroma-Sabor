@@ -31,6 +31,7 @@ public class User {
     private String senha;
 
     @Email
+    @NotBlank
     private String email;
 
     @NotBlank

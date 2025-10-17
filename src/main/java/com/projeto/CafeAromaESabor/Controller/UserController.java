@@ -38,14 +38,38 @@ public class UserController {
     }
 
     @GetMapping("/usuarios/editar/{id}")
-    public String showEditUserForm(Model model){
+    public String showEditUserForm(@PathVariable Long id, Model model){
+        User usuario = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("ID de usuário inválido:" + id));
+        model.addAttribute("usuario", usuario);
         return "editar-usuario";
     }
 
-    @PatchMapping("/usuarios/editar/{id}")
-    public  String editarUsuario(User usuario, RedirectAttributes redirectAttributes, @PathVariable Long id){
-        userRepository.save(usuario);
+    @PostMapping("/usuarios/editar/{id}")
+    public String editarUsuario(@PathVariable Long id, User usuario, RedirectAttributes redirectAttributes){
+        User UserExistente = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("ID de usuário inválido:" + id));
+
+        UserExistente.setUsername(usuario.getUsername());
+        UserExistente.setNome(usuario.getNome());
+        UserExistente.setEmail(usuario.getEmail());
+        UserExistente.setCpf(usuario.getCpf());
+
+        // Só atualiza a senha se uma nova for fornecida
+        if (usuario.getSenha() != null && !usuario.getSenha().isEmpty()) {
+            // Lembre-se de criptografar a nova senha aqui
+            UserExistente.setSenha(usuario.getSenha());
+        }
+
+        userRepository.save(UserExistente);
         redirectAttributes.addFlashAttribute("message", "Usuário editado com sucesso!");
+        return "redirect:/usuarios";
+    }
+
+    @DeleteMapping("/usuarios/apagar/{id}")
+    public String deletarUser(@PathVariable Long id, RedirectAttributes redirectAttributes){
+        userRepository.deleteById(id);
+        redirectAttributes.addFlashAttribute("message", "Usuário deletado com sucesso!");
         return "redirect:/usuarios";
     }
 }

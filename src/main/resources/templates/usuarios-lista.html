@@ -36,7 +36,11 @@
                             <td th:text="${usuario.cpf}"></td>
                             <td>
                                 <a th:href="@{/usuarios/editar/{id}(id=${usuario.id})}" class="btn btn-sm btn-warning">Editar</a>
-                                <a href="#" class="btn btn-sm btn-danger">Excluir</a>
+                                <!-- Formulário para deletar o usuário -->
+                                <form th:action="@{/usuarios/apagar/{id}(id=${usuario.id})}" method="post" style="display:inline;">
+                                    <input type="hidden" name="_method" value="delete" />
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja apagar este usuário?');">Excluir</button>
+                                </form>
                             </td>
                         </tr>
                         <tr th:if="${#lists.isEmpty(usuarios)}">

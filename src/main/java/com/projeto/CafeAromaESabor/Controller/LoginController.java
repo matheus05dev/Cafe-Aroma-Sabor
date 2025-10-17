@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Getter
 @Setter
 public class LoginController {
-    @GetMapping("/login")
+    @GetMapping("/")
         public String login() {
             return "login";
         }
