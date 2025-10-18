@@ -10,6 +10,8 @@ Este é um projeto simples desenvolvido para praticar a integração de **Thymel
 *   Thymeleaf
 *   Java
 *   Jakarta Persistence API (JPA) para persistência de dados
+*   MySql (Banco de Dados)
+*   Bootstrap para estilização rápida
 
 ## Funcionalidades (Requisitos Funcionais - RFs)
 
