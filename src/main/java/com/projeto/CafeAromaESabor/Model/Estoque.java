@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @Setter
@@ -21,6 +23,8 @@ public class Estoque {
 
     private int estoqueMinimo;
 
+    private LocalDate dataValidade;
+
     @OneToOne
     private Produto produto;
 
@@ -28,10 +32,8 @@ public class Estoque {
 
     public String getAvisoEstoque() {
         if (this.quantidadeAtual <= this.estoqueMinimo) {
-            String nomeProduto = (this.produto != null) ? this.produto.toString() : "Produto não identificado";
-            return "Aviso: Estoque baixo para o produto " + nomeProduto + 
-                   ". Quantidade atual: " + this.quantidadeAtual + 
-                   ", Mínimo necessário: " + this.estoqueMinimo;
+            String nomeProduto = (this.produto != null) ? this.produto.getNome() : "Produto não identificado";
+            return "ALERTA: O estoque do produto '" + nomeProduto + "' está abaixo do mínimo! Quantidade atual: " + this.quantidadeAtual + ", Mínimo: " + this.estoqueMinimo + ". Por favor, reponha o estoque.";
         }
         return null; // Sem aviso se o estoque estiver ok.
     }

@@ -1,6 +1,6 @@
 <!-- Dashboard - Café Aroma & Sabor -->
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="fragments/heads :: heads"></head>
     <body>
         <header th:replace="fragments/header :: header"></header>
@@ -12,7 +12,7 @@
                     <div class="card text-bg-success h-100">
                         <div class="card-body">
                             <h5 class="card-title">Produtos em Estoque</h5>
-                            <p class="card-text display-6">1.250</p>
+                            <p class="card-text display-6" th:text="${totalProdutosEmEstoque}"></p>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                     <div class="card text-bg-warning h-100">
                         <div class="card-body">
                             <h5 class="card-title">Produtos com Estoque Mínimo</h5>
-                            <p class="card-text display-6">8</p>
+                            <p class="card-text display-6" th:text="${produtosComEstoqueMinimo}"></p>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     <div class="card text-bg-danger h-100">
                         <div class="card-body">
                             <h5 class="card-title">Produtos com Validade Próxima</h5>
-                            <p class="card-text display-6">3</p>
+                            <p class="card-text display-6" th:text="${produtosComValidadeProxima}"></p>
                         </div>
                     </div>
                 </div>
@@ -44,33 +44,25 @@
                             <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    <th>Marca/Fornecedor</th>
-                                    <th>Tipo</th>
-                                    <th>Quantidade</th>
-                                    <th>Validade</th>
+                                    <th>Quantidade Atual</th>
+                                    <th>Estoque Mínimo</th>
+                                    <th>Validade Mais Próxima</th>
+                                    <th>Aviso</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Café Gourmet</td>
-                                    <td>Fornecedor A</td>
-                                    <td>Grãos</td>
-                                    <td>200</td>
-                                    <td>20/12/2025</td>
+                                <tr th:each="estoque : ${estoques}">
+                                    <td th:text="${estoque.produto.nome}"></td>
+                                    <td th:text="${estoque.quantidadeAtual}"></td>
+                                    <td th:text="${estoque.estoqueMinimo}"></td>
+                                    <td th:text="${estoque.dataValidade != null ? #temporals.format(estoque.dataValidade, 'dd/MM/yyyy') : 'N/A'}"></td>
+                                    <td>
+                                        <span th:if="${estoque.avisoEstoque != null}" th:text="${estoque.avisoEstoque}" class="badge bg-danger"></span>
+                                        <span th:unless="${estoque.avisoEstoque != null}" class="badge bg-success">Ok</span>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>Café Tradicional</td>
-                                    <td>Fornecedor B</td>
-                                    <td>Pó</td>
-                                    <td>80</td>
-                                    <td>10/11/2025</td>
-                                </tr>
-                                <tr>
-                                    <td>Café Orgânico</td>
-                                    <td>Fornecedor C</td>
-                                    <td>Grãos</td>
-                                    <td>50</td>
-                                    <td>05/10/2025</td>
+                                <tr th:if="${#lists.isEmpty(estoques)}">
+                                    <td colspan="5">Nenhum produto em estoque encontrado.</td>
                                 </tr>
                             </tbody>
                         </table>

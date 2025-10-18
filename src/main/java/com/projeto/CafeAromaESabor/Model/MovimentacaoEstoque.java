@@ -31,11 +31,13 @@ public class MovimentacaoEstoque {
 
     private String lote;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDate dataValidade;
 
     @Column(nullable = false)
     private LocalDate dataMovimentacao;
+
+    private String responsavel;
 
     @PrePersist
     protected void onCreate() {

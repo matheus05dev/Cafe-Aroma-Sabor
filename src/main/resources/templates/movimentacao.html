@@ -43,6 +43,10 @@
                                 <label for="dataValidade" class="form-label">Data de Validade</label>
                                 <input type="date" id="dataValidade" th:field="*{dataValidade}" class="form-control">
                             </div>
+                            <div class="col-md-3">
+                                <label for="responsavel" class="form-label">Responsável</label>
+                                <input type="text" id="responsavel" th:field="*{responsavel}" class="form-control" placeholder="Ex: João Silva">
+                            </div>
                             <div class="col-md-3 d-flex align-items-end">
                                 <button type="submit" class="btn btn-success w-100">Registrar</button>
                             </div>
@@ -64,6 +68,7 @@
                                     <th>Quantidade</th>
                                     <th>Lote</th>
                                     <th>Data Validade</th>
+                                    <th>Responsável</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,9 +79,10 @@
                                     <td th:text="${movimentacao.quantidade}"></td>
                                     <td th:text="${movimentacao.lote}"></td>
                                     <td th:text="${movimentacao.dataValidade != null ? #temporals.format(movimentacao.dataValidade, 'dd/MM/yyyy') : 'N/A'}"></td>
+                                    <td th:text="${movimentacao.responsavel}"></td>
                                 </tr>
                                 <tr th:if="${#lists.isEmpty(movimentacoes)}">
-                                    <td colspan="6">Nenhuma movimentação encontrada.</td>
+                                    <td colspan="7">Nenhuma movimentação encontrada.</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -47,13 +47,8 @@ public class MovimentacaoEstoqueController {
     public String salvarMovimentacao(@ModelAttribute MovimentacaoEstoque movimentacaoEstoque, Model model, RedirectAttributes attributes) {
         Produto produto = movimentacaoEstoque.getProduto();
         if (produto == null || produto.getId() == null) {
-            model.addAttribute("mensagem", "Produto não selecionado.");
-            List<Produto> produtos = produtoRepository.findAll();
-            List<MovimentacaoEstoque> movimentacoes = movimentacaoEstoqueRepository.findAll();
-            model.addAttribute("produtos", produtos);
-            model.addAttribute("tiposMovimento", TipoMovimento.values());
-            model.addAttribute("movimentacoes", movimentacoes);
-            return "movimentacao";
+            attributes.addFlashAttribute("mensagem", "Produto não selecionado.");
+            return "redirect:/movimentacao";
         }
 
         Optional<Estoque> estoqueOptional = estoqueRepository.findByProduto(produto);
@@ -74,19 +69,21 @@ public class MovimentacaoEstoqueController {
             estoque.setQuantidadeAtual(estoque.getQuantidadeAtual() + quantidadeMovimentada);
         } else if (movimentacaoEstoque.getTipoMovimento() == TipoMovimento.SAIDA) {
             if (estoque.getQuantidadeAtual() < quantidadeMovimentada) {
-                model.addAttribute("mensagem", "Quantidade em estoque insuficiente para a saída.");
-                List<Produto> produtos = produtoRepository.findAll();
-                List<MovimentacaoEstoque> movimentacoes = movimentacaoEstoqueRepository.findAll();
-                model.addAttribute("produtos", produtos);
-                model.addAttribute("tiposMovimento", TipoMovimento.values());
-                model.addAttribute("movimentacoes", movimentacoes);
-                return "movimentacao";
+                attributes.addFlashAttribute("mensagem", "Quantidade em estoque insuficiente para a saída.");
+                return "redirect:/movimentacao";
             }
             estoque.setQuantidadeAtual(estoque.getQuantidadeAtual() - quantidadeMovimentada);
         }
 
-        estoqueRepository.save(estoque);
+        // Salva a movimentação de estoque
         movimentacaoEstoqueRepository.save(movimentacaoEstoque);
+
+        // Recalculate and update Estoque.dataValidade after the movement
+        Optional<LocalDate> earliestDataValidade = movimentacaoEstoqueRepository.findEarliestDataValidadeByProduto(produto);
+        estoque.setDataValidade(earliestDataValidade.orElse(null));
+
+        // Atualiza o estoque no banco de dados
+        estoqueRepository.save(estoque);
 
         attributes.addFlashAttribute("mensagem", "Movimentação registrada com sucesso!");
         return "redirect:/movimentacao";
