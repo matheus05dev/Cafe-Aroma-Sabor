@@ -31,7 +31,7 @@ public class ProdutoController {
     public String CriarProduto(Produto produto, RedirectAttributes redirectAttributes) {
         produtoRepository.save(produto);
         redirectAttributes.addFlashAttribute("message", "Produto criado com sucesso!");
-        return "redirect:/produtos-lista";
+        return "redirect:/produtos";
     }
 
     @GetMapping("/produtos")

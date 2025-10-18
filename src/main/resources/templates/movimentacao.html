@@ -1,43 +1,47 @@
 <!-- Movimentação de Estoque | Café Aroma & Sabor -->
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="fragments/heads :: heads"></head>
     <body>
         <header th:replace="fragments/header :: header"></header>
         <main class="container main-content">
             <h1 class="mb-4">Movimentação de Estoque</h1>
+
+            <div th:if="${mensagem}" class="alert alert-info" role="alert">
+                <p th:text="${mensagem}"></p>
+            </div>
+
             <!-- Formulário de Movimentação -->
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">Registrar Movimentação</div>
                 <div class="card-body">
-                    <form>
+                    <form th:action="@{/movimentacao/salvar}" th:object="${movimentacaoEstoque}" method="post">
                         <div class="row g-3">
                             <div class="col-md-4">
-                                <label class="form-label">Produto</label>
-                                <select class="form-select">
-                                    <option>Café Gourmet</option>
-                                    <option>Café Tradicional</option>
-                                    <option>Café Orgânico</option>
+                                <label for="produto" class="form-label">Produto</label>
+                                <select id="produto" th:field="*{produto.id}" class="form-select" required>
+                                    <option value="">Selecione um produto</option>
+                                    <option th:each="produto : ${produtos}" th:value="${produto.id}" th:text="${produto.nome}"></option>
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <label class="form-label">Quantidade</label>
-                                <input type="number" class="form-control" placeholder="Ex: 10">
+                                <label for="quantidade" class="form-label">Quantidade</label>
+                                <input type="number" id="quantidade" th:field="*{quantidade}" class="form-control" placeholder="Ex: 10" min="1" required>
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label">Tipo de Movimentação</label>
-                                <select class="form-select">
-                                    <option>Entrada</option>
-                                    <option>Saída</option>
+                                <label for="tipoMovimento" class="form-label">Tipo de Movimentação</label>
+                                <select id="tipoMovimento" th:field="*{tipoMovimento}" class="form-select" required>
+                                    <option value="">Selecione o tipo</option>
+                                    <option th:each="tipo : ${tiposMovimento}" th:value="${tipo}" th:text="${tipo}"></option>
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label">Responsável</label>
-                                <input type="text" class="form-control" placeholder="Ex: João Silva">
+                                <label for="lote" class="form-label">Lote</label>
+                                <input type="text" id="lote" th:field="*{lote}" class="form-control" placeholder="Ex: LoteABC">
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label">Data</label>
-                                <input type="date" class="form-control">
+                                <label for="dataValidade" class="form-label">Data de Validade</label>
+                                <input type="date" id="dataValidade" th:field="*{dataValidade}" class="form-control">
                             </div>
                             <div class="col-md-3 d-flex align-items-end">
                                 <button type="submit" class="btn btn-success w-100">Registrar</button>
@@ -58,30 +62,21 @@
                                     <th>Produto</th>
                                     <th>Tipo</th>
                                     <th>Quantidade</th>
-                                    <th>Responsável</th>
+                                    <th>Lote</th>
+                                    <th>Data Validade</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>16/10/2025</td>
-                                    <td>Café Gourmet</td>
-                                    <td>Entrada</td>
-                                    <td>50</td>
-                                    <td>João Silva</td>
+                                <tr th:each="movimentacao : ${movimentacoes}">
+                                    <td th:text="${#temporals.format(movimentacao.dataMovimentacao, 'dd/MM/yyyy')}"></td>
+                                    <td th:text="${movimentacao.produto.nome}"></td>
+                                    <td th:text="${movimentacao.tipoMovimento}"></td>
+                                    <td th:text="${movimentacao.quantidade}"></td>
+                                    <td th:text="${movimentacao.lote}"></td>
+                                    <td th:text="${movimentacao.dataValidade != null ? #temporals.format(movimentacao.dataValidade, 'dd/MM/yyyy') : 'N/A'}"></td>
                                 </tr>
-                                <tr>
-                                    <td>15/10/2025</td>
-                                    <td>Café Tradicional</td>
-                                    <td>Saída</td>
-                                    <td>20</td>
-                                    <td>Maria Souza</td>
-                                </tr>
-                                <tr>
-                                    <td>14/10/2025</td>
-                                    <td>Café Orgânico</td>
-                                    <td>Entrada</td>
-                                    <td>10</td>
-                                    <td>Pedro Lima</td>
+                                <tr th:if="${#lists.isEmpty(movimentacoes)}">
+                                    <td colspan="6">Nenhuma movimentação encontrada.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -93,4 +88,3 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
-

@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
 @Getter
 @Setter
@@ -18,14 +17,9 @@ public class Estoque {
     @Id
     private Long id;
 
-    @NotBlank
     private int quantidadeAtual;
 
-    @NotBlank
     private int estoqueMinimo;
-
-    @NotBlank
-    private String dataValidade;
 
     @OneToOne
     private Produto produto;
