@@ -1,75 +1,67 @@
-# Café Aroma & Sabor
+# Café Aroma & Sabor - Gestão de Cafeteria
 
-Este é um projeto simples desenvolvido para praticar a integração de **Thymeleaf** com **Spring Boot**.
+![Status](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen)
 
-**Atenção**: Este projeto foi criado com o objetivo de aprendizado rápido e, portanto, **não segue as melhores práticas de desenvolvimento** ou padrões de arquitetura recomendados para aplicações em produção. O foco principal é a funcionalidade e a demonstração do uso do Thymeleaf para renderização de páginas web dinâmicas.
+## 📖 Sobre o Projeto
 
-## Tecnologias Utilizadas
+**Café Aroma & Sabor** é uma aplicação web para a gestão de uma cafeteria, desenvolvida como projeto final do curso técnico de **Desenvolvimento de Software** no **SENAI "Antonio Ermírio de Moraes"** (Alumínio-SP).
 
-*   Spring Boot
-*   Thymeleaf
-*   Java
-*   Jakarta Persistence API (JPA) para persistência de dados
-*   MySql (Banco de Dados)
-*   Bootstrap para estilização rápida
+O desafio foi aplicar o conhecimento em todo o **ciclo de desenvolvimento de software**, desde a concepção até a entrega, focando em transformar requisitos em uma aplicação funcional.
 
-## Funcionalidades (Requisitos Funcionais - RFs)
+> **Nota**: O foco deste projeto foi a conclusão do ciclo de desenvolvimento em um ambiente de aprendizado. Portanto, a aplicação de padrões de arquitetura complexos e boas práticas de código (como SOLID, Clean Code, etc.) não foi uma prioridade. O objetivo era entregar uma solução funcional que atendesse aos requisitos definidos.
 
-O projeto implementa as seguintes funcionalidades principais:
 
-*   **RF: Gerenciamento de Estoque**: Permite a entrada e saída de produtos do estoque, registrando as movimentações.
-*   **RF: CRUD de Produtos**: Funcionalidades completas para Cadastro, Leitura, Alteração e Exclusão de informações de produtos.
-*   **RF: Histórico de Movimentação de Estoque**: Mantém um registro detalhado de todas as transições de estoque, incluindo quem realizou a movimentação e a data.
-*   **RF: CRUD de Usuários**: Funcionalidades completas para Cadastro, Leitura, Alteração e Exclusão de usuários (funcionários).
-*   **RF: Alertas de Estoque**: Emite avisos quando a quantidade de um produto no estoque está abaixo do mínimo definido ou quando a data de validade está próxima.
-*   **RF: Login de Usuários**: Sistema de autenticação para acesso à aplicação.
+## ✨ Funcionalidades
 
-## Modelos de Dados (Entidades)
+-   **Controle de Estoque**: Gerenciamento de entrada e saída de produtos.
+-   **CRUD de Produtos**: Cadastro, leitura, alteração e exclusão de produtos.
+-   **Histórico de Movimentações**: Rastreamento de todas as transações de estoque.
+-   **CRUD de Usuários**: Gerenciamento de funcionários com acesso ao sistema.
+-   **Alertas**: Notificações para estoque baixo ou produtos próximos da validade.
+-   **Autenticação**: Sistema de login para controle de acesso.
 
-As principais entidades do sistema são:
+## 🛠️ Tecnologias Utilizadas
 
-### `Produto`
-Representa um item que pode ser armazenado no estoque.
-*   `id`: Identificador único do produto.
-*   `nome`: Nome do produto.
-*   `marca`: Marca ou fornecedor do produto.
-*   `codigoInterno`: Código de identificação interno do produto.
-*   `tipo`: Categoria do produto (ex: grãos, café moído, acessórios).
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring](https://img.shields.io/badge/Spring_Boot-3.5.6-green)
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-3.5.6-darkgreen)
+![JPA](https://img.shields.io/badge/JPA-Hibernate-orange)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.3-purple)
+![Maven](https://img.shields.io/badge/Maven-4.0-blue?logo=apache-maven)
+## 🚀 Como Executar
 
-### `Estoque`
-Gerencia as informações de estoque para cada produto.
-*   `id`: Identificador único do registro de estoque.
-*   `quantidadeAtual`: Quantidade atual do produto em estoque.
-*   `estoqueMinimo`: Quantidade mínima desejável em estoque para o produto.
-*   `dataValidade`: Data de validade do lote atual do produto (pode ser associada a um lote específico).
-*   `produto`: Referência ao `Produto` associado a este registro de estoque.
-*   **Funcionalidade**: Gera um aviso se a `quantidadeAtual` for menor ou igual ao `estoqueMinimo`.
+Siga os passos abaixo para rodar a aplicação em seu ambiente local.
 
-### `MovimentacaoEstoque`
-Registra cada transação de entrada ou saída de produtos no estoque.
-*   `id`: Identificador único da movimentação.
-*   `produto`: Referência ao `Produto` que foi movimentado.
-*   `tipoMovimento`: Tipo da movimentação (entrada ou saída).
-*   `quantidade`: Quantidade de itens movimentados.
-*   `lote`: Lote do produto movimentado.
-*   `dataValidade`: Data de validade do lote movimentado.
-*   `dataMovimentacao`: Data em que a movimentação ocorreu.
-*   `responsavel`: Nome ou identificador do usuário que realizou a movimentação.
+**Pré-requisitos:**
 
-### `Usuario`
-Representa um funcionário com acesso ao sistema.
-*   `id`: Identificador único do usuário.
-*   `username`: Nome de usuário para login.
-*   `senha`: Senha do usuário.
-*   `nome`: Nome completo do funcionário.
-*   `email`: Endereço de e-mail do funcionário.
-*   `cpf`: Cadastro de Pessoa Física do funcionário.
+*   Java JDK 21 ou superior
+*   Maven
+*   Uma instância do MySQL em execução
 
-## Como Rodar
+**Passos:**
 
-**Importante**: Antes de rodar a aplicação, verifique e configure as propriedades de conexão com o banco de dados no arquivo `src/main/resources/application.properties` para evitar problemas.
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/seu-usuario/provacola.git
+    cd provacola
+    ```
 
-1.  Clone o repositório.
-2.  Abra o projeto em sua IDE favorita (IntelliJ IDEA, Eclipse, etc.).
-3.  Execute a classe principal da aplicação Spring Boot.
-4.  Acesse `http://localhost:8080` no seu navegador.
+2.  **Configure o Banco de Dados:**
+    *   No arquivo `src/main/resources/application.properties`, altere as propriedades `spring.datasource.url`, `spring.datasource.username` e `spring.datasource.password` com as credenciais do seu banco de dados.
+
+3.  **Execute a aplicação:**
+    ```bash
+    mvn spring-boot:run
+    ```
+
+4.  **Acesse a aplicação:**
+    *   Abra seu navegador e acesse `http://localhost:8080`.
+
+## 🧠 Principais Aprendizados
+
+-   Aplicação prática do ciclo de vida de desenvolvimento de software.
+-   Experiência com o ecossistema Spring Boot (Spring MVC, Spring Data JPA).
+-   Criação de interfaces web dinâmicas com Thymeleaf e integração com o backend.
+-   Modelagem de dados e mapeamento objeto-relacional (ORM) com JPA/Hibernate.
+-   Levantamento de requisitos funcionais e sua tradução em funcionalidades de software.
