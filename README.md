@@ -4,7 +4,7 @@
 
 ## 📖 Sobre o Projeto
 
-**Café Aroma & Sabor** é uma aplicação web para a gestão de uma cafeteria, desenvolvida como projeto final do curso técnico de **Desenvolvimento de Software** no **SENAI "Antonio Ermírio de Moraes"** (Alumínio-SP).
+**Café Aroma & Sabor** é uma aplicação web para a gestão de uma cafeteria, desenvolvida como projeto prático do curso técnico de **Desenvolvimento de Software** no **SENAI "Antonio Ermírio de Moraes"** (Alumínio-SP).
 
 O desafio foi aplicar o conhecimento em todo o **ciclo de desenvolvimento de software**, desde a concepção até a entrega, focando em transformar requisitos em uma aplicação funcional.
 
