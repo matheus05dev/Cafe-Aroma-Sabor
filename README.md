@@ -43,8 +43,8 @@ Siga os passos abaixo para rodar a aplicação em seu ambiente local.
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/seu-usuario/provacola.git
-    cd provacola
+    git clone https://github.com/seu-usuario/cafe-aroma-sabor.git
+    cd cafe-aroma-sabor
     ```
 
 2.  **Configure o Banco de Dados:**
