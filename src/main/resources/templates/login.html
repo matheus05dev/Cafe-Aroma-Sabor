@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head th:replace="fragments/heads :: heads"></head>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/heads :: heads}"></head>
 <body>
-    <main class="container main-content d-flex align-items-center justify-content-center" style="min-height: 100vh;">
-        <div class="card p-4 shadow" style="min-width: 350px;">
-            <h2 class="mb-4 text-center">Login</h2>
-            <form>
-                <div class="mb-3">
-                    <label for="username" class="form-label">Usuário</label>
-                    <input type="text" class="form-control" id="username" placeholder="Digite seu usuário">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Entrar</button>
-            </form>
+<main class="container main-content d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="card p-4 shadow" style="min-width: 350px;">
+        <h2 class="mb-4 text-center">Login</h2>
+
+        <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+            <p th:text="${errorMessage}"></p>
         </div>
-    </main>
-    <footer th:replace="fragments/footer :: footer"></footer>
+
+        <div th:if="${logoutMessage}" class="alert alert-success" role="alert">
+            <p th:text="${logoutMessage}"></p>
+        </div>
+
+        <form th:action="@{/autenticacao}" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">Usuário</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Digite seu usuário" required autofocus>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Entrar</button>
+        </form>
+    </div>
+</main>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>
-
