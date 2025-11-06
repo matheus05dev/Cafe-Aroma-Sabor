@@ -17,37 +17,37 @@
                 <div class="card-body">
                     <form th:action="@{/movimentacao/salvar}" th:object="${movimentacaoEstoque}" method="post">
                         <div class="row g-3">
-                            <div class="col-md-4">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <label for="produto" class="form-label">Produto</label>
                                 <select id="produto" th:field="*{produto.id}" class="form-select" required>
                                     <option value="">Selecione um produto</option>
                                     <option th:each="produto : ${produtos}" th:value="${produto.id}" th:text="${produto.nome}"></option>
                                 </select>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-12 col-md-6 col-lg-2">
                                 <label for="quantidade" class="form-label">Quantidade</label>
                                 <input type="number" id="quantidade" th:field="*{quantidade}" class="form-control" placeholder="Ex: 10" min="1" required>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-12 col-md-6 col-lg-3">
                                 <label for="tipoMovimento" class="form-label">Tipo de Movimentação</label>
                                 <select id="tipoMovimento" th:field="*{tipoMovimento}" class="form-select" required>
                                     <option value="">Selecione o tipo</option>
                                     <option th:each="tipo : ${tiposMovimento}" th:value="${tipo}" th:text="${tipo}"></option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-12 col-md-6 col-lg-3">
                                 <label for="lote" class="form-label">Lote</label>
                                 <input type="text" id="lote" th:field="*{lote}" class="form-control" placeholder="Ex: LoteABC">
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <label for="dataValidade" class="form-label">Data de Validade</label>
                                 <input type="date" id="dataValidade" th:field="*{dataValidade}" class="form-control">
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <label for="responsavel" class="form-label">Responsável</label>
                                 <input type="text" id="responsavel" th:field="*{responsavel}" class="form-control" placeholder="Ex: João Silva">
                             </div>
-                            <div class="col-md-3 d-flex align-items-end">
+                            <div class="col-12 col-lg-4 d-flex align-items-end">
                                 <button type="submit" class="btn btn-success w-100">Registrar</button>
                             </div>
                         </div>
@@ -81,12 +81,28 @@
                                     <td th:text="${movimentacao.dataValidade != null ? #temporals.format(movimentacao.dataValidade, 'dd/MM/yyyy') : 'N/A'}"></td>
                                     <td th:text="${movimentacao.responsavel}"></td>
                                 </tr>
-                                <tr th:if="${#lists.isEmpty(movimentacoes)}">
+                                <tr th:if="${movimentacoes.isEmpty()}">
                                     <td colspan="7">Nenhuma movimentação encontrada.</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <!-- Controles de Paginação -->
+                <div class="card-footer bg-light" th:if="${movimentacoes.totalPages > 1}">
+                    <nav aria-label="Paginação">
+                        <ul class="pagination justify-content-center mb-0">
+                            <li class="page-item" th:classappend="${movimentacoes.first} ? 'disabled' : ''">
+                                <a class="page-link" th:href="@{/movimentacao(page=${movimentacoes.number - 1})}">Anterior</a>
+                            </li>
+                            <li class="page-item" th:each="i : ${#numbers.sequence(0, movimentacoes.totalPages - 1)}" th:classappend="${i == movimentacoes.number} ? 'active' : ''">
+                                <a class="page-link" th:href="@{/movimentacao(page=${i})}" th:text="${i + 1}"></a>
+                            </li>
+                            <li class="page-item" th:classappend="${movimentacoes.last} ? 'disabled' : ''">
+                                <a class="page-link" th:href="@{/movimentacao(page=${movimentacoes.number + 1})}">Próxima</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </main>
