@@ -27,7 +27,7 @@ public class DataInitializer implements CommandLineRunner {
             admin.setRoles(Collections.singletonList("ROLE_ADMIN"));
             admin.setNome("Administrador");
             admin.setEmail("admin@caferest.com");
-            admin.setCpf("22771280078");
+            admin.setCpf("227.712.800-78");
             userRepository.save(admin);
         }
     }
