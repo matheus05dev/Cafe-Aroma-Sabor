@@ -1,9 +1,9 @@
 <!-- Movimentação de Estoque | Café Aroma & Sabor -->
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments/heads :: heads"></head>
+    <head th:replace="~{fragments/heads :: heads}"></head>
     <body>
-        <header th:replace="fragments/header :: header"></header>
+        <header th:replace="~{fragments/header :: header}"></header>
         <main class="container main-content">
             <h1 class="mb-4">Movimentação de Estoque</h1>
 
@@ -106,7 +106,6 @@
                 </div>
             </div>
         </main>
-        <footer th:replace="fragments/footer :: footer"></footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

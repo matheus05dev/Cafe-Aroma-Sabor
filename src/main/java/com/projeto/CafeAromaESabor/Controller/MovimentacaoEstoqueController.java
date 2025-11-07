@@ -8,6 +8,8 @@ import com.projeto.CafeAromaESabor.Repository.EstoqueRepository;
 import com.projeto.CafeAromaESabor.Repository.MovimentacaoEstoqueRepository;
 import com.projeto.CafeAromaESabor.Repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,9 +35,9 @@ public class MovimentacaoEstoqueController {
     private EstoqueRepository estoqueRepository;
 
     @GetMapping("/movimentacao")
-    public String novaMovimentacao(Model model) {
+    public String novaMovimentacao(Model model, Pageable pageable) {
         List<Produto> produtos = produtoRepository.findAll();
-        List<MovimentacaoEstoque> movimentacoes = movimentacaoEstoqueRepository.findAll();
+        Page<MovimentacaoEstoque> movimentacoes = movimentacaoEstoqueRepository.findAll(pageable);
         model.addAttribute("movimentacaoEstoque", new MovimentacaoEstoque());
         model.addAttribute("produtos", produtos);
         model.addAttribute("tiposMovimento", TipoMovimento.values());
